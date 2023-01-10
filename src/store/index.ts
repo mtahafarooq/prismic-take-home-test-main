@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { productSlice } from "../pages/products/slices/product-slice";
-
+import { ruleSlice } from "../pages/rules/slices/rule-slice";
 export const store = configureStore({
   reducer: {
     product: productSlice.reducer,
+    rule: ruleSlice.reducer,
   },
 });
 
