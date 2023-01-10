@@ -11,6 +11,7 @@ import { Product } from "./types/product";
 
 interface ProductsProps {
   products: Product;
+  addProductToBasket: (name: string) => void;
 }
 
 const getRows = (product: Product) => {
@@ -21,7 +22,7 @@ const getRows = (product: Product) => {
   return rows;
 };
 
-const Products: FC<ProductsProps> = ({ products }) => {
+const Products: FC<ProductsProps> = ({ products, addProductToBasket }) => {
   return (
     <TableContainer>
       <h1>Products</h1>
@@ -50,7 +51,11 @@ const Products: FC<ProductsProps> = ({ products }) => {
               </TableCell>
               <TableCell>{row.unitPrice}</TableCell>
               <TableCell>
-                <Button variant="outlined" href="#outlined-buttons">
+                <Button
+                  variant="outlined"
+                  href="#outlined-buttons"
+                  onClick={() => addProductToBasket(row.name)}
+                >
                   Add
                 </Button>
               </TableCell>

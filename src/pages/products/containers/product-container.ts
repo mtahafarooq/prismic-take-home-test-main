@@ -3,6 +3,7 @@ import { bindActionCreators } from "@reduxjs/toolkit";
 import { AppDispatch, RootState } from "../../../store";
 import { productsData } from "../selectors";
 import Products from "../";
+import { addProduct } from "../../basket/slices/basket-slice";
 const mapStateToProps = (state: RootState) => {
   return {
     products: productsData(state),
@@ -10,7 +11,12 @@ const mapStateToProps = (state: RootState) => {
 };
 
 const mapDispatchToProps = (dispatch: AppDispatch) => {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators(
+    {
+      addProductToBasket: addProduct,
+    },
+    dispatch
+  );
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);
