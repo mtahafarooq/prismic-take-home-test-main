@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { productsMockData } from "../products-mock-data";
 import { Product } from "../types/product";
 
 export interface ProductStateModel {
@@ -6,7 +7,7 @@ export interface ProductStateModel {
 }
 
 const initialState: ProductStateModel = {
-  products: {} as Product,
+  products: productsMockData,
 };
 
 const REDUCER_NAME = "product";
