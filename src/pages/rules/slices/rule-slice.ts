@@ -20,9 +20,14 @@ export const ruleSlice = createSlice({
     removeRule(state, action: PayloadAction<string>) {
       delete state.rules[action.payload];
     },
+    addRule(state, action: PayloadAction<Rule>) {
+      const newRule: Rule = action.payload;
+      const newRuleName: string = Object.keys(newRule).toString();
+      state.rules[newRuleName] = newRule[newRuleName];
+    },
   },
 });
 
-export const { removeRule } = ruleSlice.actions;
+export const { removeRule, addRule } = ruleSlice.actions;
 
 export default ruleSlice.reducer;
