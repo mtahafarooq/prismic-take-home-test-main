@@ -1,7 +1,9 @@
+import Products from "./pages/products/containers/product-container";
+
 export default function App() {
   return (
-    <>
-      <div>Hello World</div>
-    </>
+    <div>
+      <Products />
+    </div>
   );
 }
