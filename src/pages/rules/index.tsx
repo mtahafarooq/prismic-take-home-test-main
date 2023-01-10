@@ -5,12 +5,13 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Button from "@mui/material/Button";
-
+import IconButton from "@mui/material/IconButton";
+import ClearIcon from "@mui/icons-material/Clear";
 import { Rule } from "./types/rule";
 
 interface RulesProps {
   rules: Rule;
+  removeRule: (name: string) => void;
 }
 
 const getRows = (rule: Rule) => {
@@ -21,7 +22,7 @@ const getRows = (rule: Rule) => {
   return rows;
 };
 
-const Rules: FC<RulesProps> = ({ rules }) => {
+const Rules: FC<RulesProps> = ({ rules, removeRule }) => {
   return (
     <TableContainer>
       <h1>Rules</h1>
@@ -37,6 +38,9 @@ const Rules: FC<RulesProps> = ({ rules }) => {
             <TableCell>
               <strong>Special Offer</strong>
             </TableCell>
+            <TableCell>
+              <strong>Remove</strong>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -50,6 +54,14 @@ const Rules: FC<RulesProps> = ({ rules }) => {
               </TableCell>
               <TableCell>{row.price}</TableCell>
               <TableCell>{`${row.quantity} for ${row.price}`}</TableCell>
+              <IconButton
+                aria-label="delete"
+                onClick={() => {
+                  removeRule(row.name);
+                }}
+              >
+                <ClearIcon />
+              </IconButton>
             </TableRow>
           ))}
         </TableBody>
