@@ -23,8 +23,11 @@ export const basketSlice = createSlice({
         state.basket[action.payload] = 1;
       }
     },
+    removeProduct(state, action: PayloadAction<string>) {
+      delete state.basket[action.payload];
+    },
   },
 });
-export const { addProduct } = basketSlice.actions;
+export const { addProduct, removeProduct } = basketSlice.actions;
 
 export default basketSlice.reducer;

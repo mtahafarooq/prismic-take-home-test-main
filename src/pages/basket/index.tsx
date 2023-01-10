@@ -5,10 +5,12 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { Basket as BasketType } from "./types/basket";
-
+import IconButton from "@mui/material/IconButton";
+import ClearIcon from "@mui/icons-material/Clear";
 interface BasketProps {
   basket: BasketType;
   checkoutTotal: number;
+  removeProductFromBasket: (name: string) => void;
 }
 
 const getRows = (basket: BasketType) => {
@@ -19,12 +21,16 @@ const getRows = (basket: BasketType) => {
   return rows;
 };
 
-const Basket: FC<BasketProps> = ({ basket, checkoutTotal }) => {
+const Basket: FC<BasketProps> = ({
+  basket,
+  checkoutTotal,
+  removeProductFromBasket,
+}) => {
   return (
     <Table sx={{ maxWidth: 400 }} aria-label="spanning table">
       <TableHead>
         <TableRow>
-          <TableCell align="center" colSpan={2}>
+          <TableCell colSpan={3}>
             <h1>Basket</h1>
           </TableCell>
         </TableRow>
@@ -35,6 +41,9 @@ const Basket: FC<BasketProps> = ({ basket, checkoutTotal }) => {
           <TableCell align="right">
             <strong>Qty.</strong>
           </TableCell>
+          <TableCell align="right">
+            <strong>Remove</strong>
+          </TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
@@ -42,10 +51,20 @@ const Basket: FC<BasketProps> = ({ basket, checkoutTotal }) => {
           <TableRow key={row.name}>
             <TableCell>{row.name}</TableCell>
             <TableCell align="right">{row.quantity}</TableCell>
+            <TableCell align="right">
+              <IconButton
+                aria-label="delete"
+                onClick={() => {
+                  removeProductFromBasket(row.name);
+                }}
+              >
+                <ClearIcon />
+              </IconButton>
+            </TableCell>
           </TableRow>
         ))}
         <TableRow>
-          <TableCell colSpan={1}>Total</TableCell>
+          <TableCell colSpan={2}>Total</TableCell>
           <TableCell align="right">{checkoutTotal}</TableCell>
         </TableRow>
       </TableBody>
