@@ -6,6 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Button from "@mui/material/Button";
+import Paper from "@mui/material/Paper";
 
 import { Product } from "./types/product";
 
@@ -24,18 +25,22 @@ const getRows = (product: Product) => {
 
 const Products: FC<ProductsProps> = ({ products, addProductToBasket }) => {
   return (
-    <TableContainer>
-      <h1>Products</h1>
-      <Table sx={{ maxWidth: 400 }} aria-label="simple table">
+    <TableContainer component={Paper}>
+      <Table aria-label="spanning table">
         <TableHead>
           <TableRow>
-            <TableCell>
+            <TableCell colSpan={3}>
+              <h1>Products</h1>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell align="center">
               <strong>Name</strong>
             </TableCell>
-            <TableCell>
+            <TableCell align="center">
               <strong>Unit Price</strong>
             </TableCell>
-            <TableCell>
+            <TableCell align="center">
               <strong>Add to Basket</strong>
             </TableCell>
           </TableRow>
@@ -46,14 +51,14 @@ const Products: FC<ProductsProps> = ({ products, addProductToBasket }) => {
               key={row.name}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell align="center" component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell>{row.unitPrice}</TableCell>
-              <TableCell>
+              <TableCell align="center">{row.unitPrice}</TableCell>
+              <TableCell align="center">
                 <Button
-                  variant="outlined"
-                  href="#outlined-buttons"
+                  variant="contained"
+                  color="primary"
                   onClick={() => addProductToBasket(row.name)}
                 >
                   Add

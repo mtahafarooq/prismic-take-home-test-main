@@ -7,6 +7,9 @@ import TableRow from "@mui/material/TableRow";
 import { Basket as BasketType } from "./types/basket";
 import IconButton from "@mui/material/IconButton";
 import ClearIcon from "@mui/icons-material/Clear";
+import TableContainer from "@mui/material/TableContainer";
+import Paper from "@mui/material/Paper";
+
 interface BasketProps {
   basket: BasketType;
   checkoutTotal: number;
@@ -27,48 +30,52 @@ const Basket: FC<BasketProps> = ({
   removeProductFromBasket,
 }) => {
   return (
-    <Table sx={{ maxWidth: 400 }} aria-label="spanning table">
-      <TableHead>
-        <TableRow>
-          <TableCell colSpan={3}>
-            <h1>Basket</h1>
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>
-            <strong>Product</strong>
-          </TableCell>
-          <TableCell align="right">
-            <strong>Qty.</strong>
-          </TableCell>
-          <TableCell align="right">
-            <strong>Remove</strong>
-          </TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {getRows(basket).map((row) => (
-          <TableRow key={row.name}>
-            <TableCell>{row.name}</TableCell>
-            <TableCell align="right">{row.quantity}</TableCell>
-            <TableCell align="right">
-              <IconButton
-                aria-label="delete"
-                onClick={() => {
-                  removeProductFromBasket(row.name);
-                }}
-              >
-                <ClearIcon />
-              </IconButton>
+    <TableContainer component={Paper}>
+      <Table aria-label="spanning table">
+        <TableHead>
+          <TableRow>
+            <TableCell colSpan={3}>
+              <h1>Basket</h1>
             </TableCell>
           </TableRow>
-        ))}
-        <TableRow>
-          <TableCell colSpan={2}>Total</TableCell>
-          <TableCell align="right">{checkoutTotal}</TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
+          <TableRow>
+            <TableCell align="center">
+              <strong>Product</strong>
+            </TableCell>
+            <TableCell align="center">
+              <strong>Quantity</strong>
+            </TableCell>
+            <TableCell align="center">
+              <strong>Remove</strong>
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {getRows(basket).map((row) => (
+            <TableRow key={row.name}>
+              <TableCell align="center">{row.name}</TableCell>
+              <TableCell align="center">{row.quantity}</TableCell>
+              <TableCell align="center">
+                <IconButton
+                  aria-label="delete"
+                  onClick={() => {
+                    removeProductFromBasket(row.name);
+                  }}
+                >
+                  <ClearIcon />
+                </IconButton>
+              </TableCell>
+            </TableRow>
+          ))}
+          <TableRow>
+            <TableCell align="right" colSpan={2}>
+              <strong>Total</strong>
+            </TableCell>
+            <TableCell align="right">{checkoutTotal}</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 

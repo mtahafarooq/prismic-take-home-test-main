@@ -10,6 +10,8 @@ import ClearIcon from "@mui/icons-material/Clear";
 import { Rule } from "./types/rule";
 import AddRule from "../../components/rule/add-rule";
 import { Product } from "../products/types/product";
+import Paper from "@mui/material/Paper";
+import Divider from "@mui/material/Divider";
 
 interface RulesProps {
   rules: Rule;
@@ -28,52 +30,58 @@ const getRows = (rule: Rule) => {
 
 const Rules: FC<RulesProps> = ({ rules, removeRule, addRule, products }) => {
   return (
-    <TableContainer>
-      <AddRule addRule={addRule} products={products} />
-      <h1>Rules</h1>
-      <Table sx={{ maxWidth: 400 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>
-              <strong>Product</strong>
-            </TableCell>
-            <TableCell>
-              <strong>Unit Price</strong>
-            </TableCell>
-            <TableCell>
-              <strong>Special Offer</strong>
-            </TableCell>
-            <TableCell>
-              <strong>Remove</strong>
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {getRows(rules).map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell>{row.price}</TableCell>
-              <TableCell>{`${row.quantity} for ${row.price}`}</TableCell>
-              <TableCell>
-                <IconButton
-                  aria-label="delete"
-                  onClick={() => {
-                    removeRule(row.name);
-                  }}
-                >
-                  <ClearIcon />
-                </IconButton>
+    <>
+      <TableContainer component={Paper}>
+        <Table aria-label="spanning table">
+          <TableHead>
+            <TableRow>
+              <TableCell colSpan={4}>
+                <h1>Rules</h1>
               </TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+            <TableRow>
+              <TableCell align="center">
+                <strong>Product</strong>
+              </TableCell>
+              <TableCell align="center">
+                <strong>Price</strong>
+              </TableCell>
+              <TableCell align="center">
+                <strong>Offer</strong>
+              </TableCell>
+              <TableCell align="center">
+                <strong>Remove</strong>
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {getRows(rules).map((row) => (
+              <TableRow
+                key={row.name}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row" align="center">
+                  {row.name}
+                </TableCell>
+                <TableCell align="center">{row.price}</TableCell>
+                <TableCell align="center">{`${row.quantity} for ${row.price}`}</TableCell>
+                <TableCell align="center">
+                  <IconButton
+                    aria-label="delete"
+                    onClick={() => {
+                      removeRule(row.name);
+                    }}
+                  >
+                    <ClearIcon />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <AddRule addRule={addRule} products={products} />
+    </>
   );
 };
 

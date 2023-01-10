@@ -12,7 +12,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: "40%",
   bgcolor: "background.paper",
   boxShadow: 24,
   p: 4,
@@ -75,7 +75,14 @@ const Rule: FC<RuleProps> = ({ products, addRule }) => {
   };
   return (
     <div>
-      <Button onClick={handleOpen}>Add Rule</Button>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleOpen}
+        sx={{ mt: 3 }}
+      >
+        Add Rule
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -83,7 +90,6 @@ const Rule: FC<RuleProps> = ({ products, addRule }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <h3>Add New Rule</h3>
           <TextField
             select
             label="Product"
@@ -93,6 +99,7 @@ const Rule: FC<RuleProps> = ({ products, addRule }) => {
             name="name"
             onChange={handleChange}
             value={inputValue.name}
+            sx={{ mr: 3 }}
           >
             {getProductsList(products).map(
               (product: { label: string; value: string }) => (
@@ -111,6 +118,7 @@ const Rule: FC<RuleProps> = ({ products, addRule }) => {
             onChange={handleChange}
             name="quantity"
             value={inputValue.quantity}
+            sx={{ mr: 3 }}
           />
           <TextField
             helperText="Please enter price"
@@ -121,6 +129,7 @@ const Rule: FC<RuleProps> = ({ products, addRule }) => {
             name="price"
             onChange={handleChange}
             value={inputValue.price}
+            sx={{ mr: 3 }}
           />
           <Button
             variant="contained"
