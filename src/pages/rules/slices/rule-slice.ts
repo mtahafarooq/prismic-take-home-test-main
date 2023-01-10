@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { rulesMockData } from "../rules-mock-data";
 import { Rule } from "../types/rule";
 
 export interface RuleStateModel {
@@ -6,7 +7,7 @@ export interface RuleStateModel {
 }
 
 const initialState: RuleStateModel = {
-  rules: {} as Rule,
+  rules: rulesMockData,
 };
 
 const REDUCER_NAME = "rule";
