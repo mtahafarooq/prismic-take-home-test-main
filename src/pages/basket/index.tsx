@@ -8,7 +8,7 @@ import { Basket as BasketType } from "./types/basket";
 import IconButton from "@mui/material/IconButton";
 import ClearIcon from "@mui/icons-material/Clear";
 import TableContainer from "@mui/material/TableContainer";
-import Paper from "@mui/material/Paper";
+import Paper from "@mui/material/Paper";// PR template test
 
 interface BasketProps {
   basket: BasketType;
